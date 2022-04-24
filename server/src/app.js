@@ -12,7 +12,7 @@ const logger = require('morgan');
 
 const db = require('./config/db')
 
-const usersRoute = require('./routes/users');
+const usersRoute = require('./routes/users.route');
 
 dotenv.config()
 
@@ -35,7 +35,6 @@ app.use(bodyParser.json())
 
 // Router
 app.use('/v1/users', usersRoute);
-app.use('/v1/todo', todoRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

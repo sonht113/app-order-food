@@ -12,7 +12,8 @@ const logger = require('morgan');
 
 const db = require('./config/db')
 
-const usersRoute = require('./routes/users.route');
+const usersRouter = require('./routes/users.route');
+const authRouter = require('./routes/auth.route')
 
 dotenv.config()
 
@@ -34,7 +35,8 @@ app.use(bodyParser.json())
 
 
 // Router
-app.use('/v1/users', usersRoute);
+app.use('/v1/users', usersRouter);
+app.use('/v1/auth', authRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

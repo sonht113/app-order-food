@@ -25,6 +25,7 @@
     "http-errors": "~1.6.3",
     "http-status": "^1.5.1",
     "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "mongoose": "^6.3.1",
     "morgan": "~1.9.1",

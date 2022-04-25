@@ -3,7 +3,7 @@ const router = express.Router();
 const { body } = require('express-validator');
 
 const {userController} = require('../controllers');
-const authMiddleware = require('../middlewares/auth.middleware');
+const userMiddleware = require('../middlewares/user.middleware');
 
 
 /* POST new user. */
@@ -15,7 +15,7 @@ router
         body('phone').not().isEmpty({ignore_whitespace: false}),
         body('email').isEmail().not().isEmpty({ignore_whitespace: false}),
         body('password').not().isEmpty({ignore_whitespace: false}).isLength({min: 8, max: undefined}),
-        authMiddleware.checkUserCreate,
+        userMiddleware.checkUser,
         userController.createUser);
 
 /* GET users. */
@@ -29,7 +29,6 @@ router
         body('phone').not().isEmpty({ignore_whitespace: false}),
         body('email').isEmail().not().isEmpty({ignore_whitespace: false}),
         body('password').not().isEmpty({ignore_whitespace: false}).isLength({min: 8, max: undefined}),
-        authMiddleware.checkUserUpdate,
         userController.updateUserById
         );
 

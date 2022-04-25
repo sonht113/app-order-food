@@ -41,21 +41,46 @@ const getAllUser = async (req, res) => {
  */
 const updateUserById = async (req, res) => {
     const user = await userService.getUserById(req.params.userId)
-    console.log(user.email)
     if(!user) {
         return res.status(404).json('User not found!');
     }
+
     const salt = await bcrypt.genSalt(10);
     const newUser = {
         username: req.body.username,
         address: req.body.address,
         phone: req.body.phone,
-        email: req.body.email,
         password: await bcrypt.hash(req.body.password, salt),
         isAdmin: req.body.isAdmin
     }
-    await userService.updateUserById(req.params.userId, newUser);
-    return res.status(200).json(newUser)
+    const userByUsername = await userService.getUserByUsername(req.body.username)
+    const userByPhone = await userService.getUserByPhone(req.body.phone)
+
+    if(newUser.username === user.username && newUser.phone === user.phone) {
+        await userService.updateUserById(req.params.userId, newUser);
+        return res.status(200).json(newUser)
+    } else if(newUser.username !== user.username && newUser.phone === user.phone){
+        if(userByUsername) {
+            return res.status(400).json('Username is already use!')
+        }
+        await userService.updateUserById(req.params.userId, newUser);
+        return res.status(200).json(newUser)
+    } else if(newUser.username === user.username && newUser.phone !== user.phone) {
+        if(userByPhone) {
+            return res.status(400).json('Phone is already use')
+        }
+        await userService.updateUserById(req.params.userId, newUser);
+        return res.status(200).json(newUser)
+    } else {
+        if(userByUsername) {
+            return res.status(400).json('Username is already use!')
+        }
+        if(userByPhone) {
+            return res.status(400).json('Phone is already use')
+        }
+        await userService.updateUserById(req.params.userId, newUser);
+        return res.status(200).json(newUser)
+    }
 }
 
 /**

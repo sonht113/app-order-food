@@ -36,6 +36,33 @@ const getUserById = async (userId) => {
 }
 
 /**
+ * Get user by email
+ * @return {Promise<User>}
+ */
+const getUserByEmail = async (email) => {
+    const user = User.findOne({email: email})
+    return user;
+}
+
+/**
+ * Get user by username
+ * @return {Promise<User>}
+ */
+const getUserByUsername = async (username) => {
+    const user = User.findOne({username: username})
+    return user;
+}
+
+/**
+ * Get user by phone
+ * @return {Promise<User>}
+ */
+const getUserByPhone = async (phone) => {
+    const user = User.findOne({phone: phone})
+    return user;
+}
+
+/**
  * Update user by id
  * @param {ObjectId} userId
  * @param {Object} updateUserBody
@@ -58,6 +85,9 @@ module.exports = {
     createUser,
     queryUsers,
     getUserById,
+    getUserByUsername,
+    getUserByEmail,
+    getUserByPhone,
     updateUserById,
     deleteUserById
 }

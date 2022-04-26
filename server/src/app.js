@@ -43,7 +43,7 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-db.connect();
+db.connectDb();
 
 app.listen(PORT, () => {
   console.log(`Server is running at: http://localhost:${PORT}`);

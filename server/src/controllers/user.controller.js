@@ -17,8 +17,10 @@ const createUser = async (req, res) => {
         username: req.body.username,
         address: req.body.address,
         phone: req.body.phone,
+        avatar: req.body.avatar,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        isAdmin: req.body.isAdmin
     };
     await userService.createUser(user);
     return res.status(httpStatus.CREATED).send(user);
@@ -49,6 +51,7 @@ const updateUserById = async (req, res) => {
     const newUser = {
         username: req.body.username,
         address: req.body.address,
+        avatar: req.body.avatar,
         phone: req.body.phone,
         password: await bcrypt.hash(req.body.password, salt),
         isAdmin: req.body.isAdmin

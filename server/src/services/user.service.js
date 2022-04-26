@@ -1,4 +1,3 @@
-const httpStatus = require('http-status');
 const User = require('../models/User')
 
 /**
@@ -6,13 +5,15 @@ const User = require('../models/User')
  * @param {Object} userBody
  * @returns {Promise<User>}
  */
-const createUser = async ({username, address, phone, email, password}) => {
+const createUser = async ({username, address, avatar, phone, email, password, isAdmin}) => {
     return User.create({
         username,
         address,
+        avatar,
         phone,
         email,
-        password
+        password,
+        isAdmin
     })
 };
 

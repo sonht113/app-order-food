@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
 
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
     {
         username: {
             type: String,
@@ -12,9 +12,15 @@ const userSchema = mongoose.Schema(
         },
         address: {
             type: String,
-            maxlength: 50,
+            maxlength: 100,
             required: true,
             trim: true,
+        },
+        avatar: {
+            type: String,
+            required: true,
+            trim: true,
+            default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIWpD65lqTtrhnWjA4DHJXoNtjTaRCcSUuPQ&usqp=CAU'
         },
         phone: {
             type: String,
@@ -27,18 +33,13 @@ const userSchema = mongoose.Schema(
             required: true,
             unique: true,
             trim: true,
-            lowercase: true,
-            validate(value) {
-                if (!validator.isEmail(value)) {
-                    throw new Error('Invalid email');
-                }
-            },
+            lowercase: true
         },
         password: {
             type: String,
             minlength: 8,
             required: true,
-            validate(value) {
+            validator(value) {
                 if (!value.match(/\d/) || !value.match(/[a-zA-Z]/)) {
                     throw new Error(
                         'Password must contain at least one letter and one number'
@@ -55,16 +56,6 @@ const userSchema = mongoose.Schema(
         timestamps: true,
     }
 );
-
-/**
- * Check if password matches the user's password
- * @param {string} password
- * @returns {Promise<boolean>}
- */
-// userSchema.methods.isPasswordMatch = async function (password) {
-//     const user = this;
-//     return bcrypt.compare(password, user.password);
-// };
 
 /**
  * @param {string} password

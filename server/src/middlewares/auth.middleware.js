@@ -19,7 +19,7 @@ const authMiddleware = {
         }
     },
     /**
-     * Verify tokend and admin
+     * Verify token and admin
      */
     verifyTokenAndAdmin: (req, res, next) => {
         const accessToken = req.cookies.accessToken
@@ -30,7 +30,7 @@ const authMiddleware = {
                 if(dataJWT.id === req.params.id || dataJWT.isAdmin) {
                     next()
                 } else {
-                    return res.status(403).json('You are node admin')
+                    return res.status(403).json('You are not admin')
                 }
             } catch (e) {
                 return res.status(401).send('unauthorized');

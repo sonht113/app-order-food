@@ -5,15 +5,14 @@ const Product = require('../models/Product')
  * @param {Object} productBody
  * @return {Promise<product>}
  */
-
-const createProduct = async ({name, description, category, price, count, image}) => {
+const createProduct = async ({name, description, category, image, price, count}) => {
     return Product.create({
         name: name,
         description: description,
         category: category,
+        image: image,
         price: price,
-        count: count,
-        image: image
+        count: count
     })
 }
 
@@ -50,6 +49,16 @@ const getProductById = async (productId) => {
 }
 
 /**
+ * Get Product by id
+ * @param {String} productName
+ * @return {Promise<product>}
+ */
+const getProductByName = async (productName) => {
+    const product = Product.findOne({name: productName})
+    return product
+}
+
+/**
  * Update product by id
  * @param {ObjectId} productId
  * @param {Object} productBody
@@ -72,6 +81,7 @@ module.exports = {
     createProduct,
     queryProducts,
     getProductById,
+    getProductByName,
     updateProductById,
     deleteProductById
 }

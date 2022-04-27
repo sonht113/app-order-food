@@ -1,4 +1,3 @@
-const createError = require('http-errors');
 const express = require('express');
 const cors = require('cors');
 const methodOverride = require('method-override');
@@ -14,6 +13,7 @@ const db = require('./config/db')
 
 const usersRouter = require('./routes/users.route');
 const authRouter = require('./routes/auth.route')
+const productRouter = require('./routes/product.route')
 
 dotenv.config()
 
@@ -36,12 +36,13 @@ app.use(bodyParser.json())
 
 // Router
 app.use('/v1/users', usersRouter);
-app.use('/v1/auth', authRouter)
+app.use('/v1/auth', authRouter);
+app.use('/v1/products', productRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 db.connectDb();
 

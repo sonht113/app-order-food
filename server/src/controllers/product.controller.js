@@ -1,28 +1,33 @@
-const httpStatus = require('http-status');
 const {validationResult} = require("express-validator");
-
-const {productService} = require('../services')
+const {productService} = require('../services/index')
 
 /**
  * Create product
  */
 const createProduct = async (req, res) => {
-    // Finds the validation errors in this request and wraps them in an object with handy functions
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+    try {
+        // Finds the validation errors in this request and wraps them in an object with handy functions
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        const product = {
+            name: req.body.name,
+            description: req.body.description,
+            category: req.body.category,
+            image: `/image/${req.file.filename}`,
+            price: req.body.price,
+            count: req.body.count
+        }
+        const productByName = await productService.getProductByName(req.body.name)
+        if(productByName) {
+            return res.status(400).json('Product name is exist!')
+        }
+        await productService.createProduct(product)
+        return res.status(200).json(product)
+    } catch (err) {
+        return res.status(500).json('Can not post product')
     }
-    const product = {
-        name: req.body.name,
-        description: req.body.description,
-        category: req.body.category,
-        price: req.body.price,
-        count: req.body.count,
-        image: req.files
-    }
-
-    await productService.createProduct(product)
-    return res.status(httpStatus.CREATED).send(product)
 }
 
 /**
@@ -52,6 +57,7 @@ const getProduct = async (req, res) => {
 
 /**
  * Update product by id
+ * TODO Check product before update
  */
 const updateProduct = async (req, res) => {
     try {

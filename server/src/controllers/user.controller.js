@@ -46,12 +46,17 @@ const updateUserById = async (req, res) => {
     if(!user) {
         return res.status(404).json('User not found!');
     }
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
 
     const salt = await bcrypt.genSalt(10);
     const newUser = {
         username: req.body.username,
         address: req.body.address,
-        avatar: req.body.avatar,
+        avatar: `/image/${req.file.filename}`,
         phone: req.body.phone,
         password: await bcrypt.hash(req.body.password, salt),
         isAdmin: req.body.isAdmin

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const upload = require('../config/upload/multer')
 const { body } = require('express-validator');
 
 const {userController} = require('../controllers');
@@ -29,6 +30,7 @@ router
         body('phone').not().isEmpty({ignore_whitespace: false}),
         body('email').isEmail().not().isEmpty({ignore_whitespace: false}),
         body('password').not().isEmpty({ignore_whitespace: false}).isLength({min: 8, max: undefined}),
+        upload.single('avatar'),
         userController.updateUserById
         );
 

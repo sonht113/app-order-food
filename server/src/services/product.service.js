@@ -22,20 +22,14 @@ const createProduct = async ({name, description, category, image, price, count})
  * @return {Promise<void>}
  */
 const queryProducts = async (page) => {
-    const perPage = Number(process.env.PER_PAGE) // product on one page
+    const perPage = process.env.PER_PAGE // product on one page
     const pageNumber = page || 1
-    console.log(perPage)
 
-    return Product
-        .find()
-        .skip((perPage * pageNumber) - perPage)
+    const products = await Product.find()
         .limit(perPage)
-        .exec((err, products) => {
-            Product.countDocuments((err, count) => {
-                if(err) return err;
-                return products;
-            })
-        })
+        .skip((perPage * pageNumber) - perPage)
+
+    return products
 }
 
 /**
@@ -49,8 +43,8 @@ const getProductById = async (productId) => {
 }
 
 /**
- * Get Product by id
- * @param {String} productName
+ * Get Product by name
+ * @param {{name}} productName
  * @return {Promise<product>}
  */
 const getProductByName = async (productName) => {

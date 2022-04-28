@@ -32,6 +32,9 @@ const createUser = async (req, res) => {
 const getAllUser = async (req, res) => {
     try{
         const users = await userService.queryUsers();
+        if(users.length === 0) {
+            return res.status(404).json('Not found any user!')
+        }
         return res.status(200).json(users)
     } catch (e) {
         return res.status(500).json(e)

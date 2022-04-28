@@ -27,7 +27,7 @@ const createMessage = async (req, res) => {
 const getAllMessage = async (req, res) => {
   try {
     const messages = await messageService.queryMessages()
-    if(!messages) {
+    if(messages.length === 0) {
       return res.status(404).status('Not found any message!')
     }
     return res.status(200).json(messages)
@@ -44,8 +44,8 @@ const getMessage = async (req, res) => {
       return res.status(404).json('Message not found!')
     }
     return res.status(200).json(message)
-  }catch (e) {
-    return res.status(500).json(e)
+  }catch (err) {
+    return res.status(500).json(err)
   }
 }
 

@@ -24,6 +24,9 @@ const createCategory = async (req, res) => {
 const getAllCategory = async (req, res) => {
     try {
         const categories = await categoryService.queryCategories();
+        if(categories.length === 0) {
+            return res.status(404).json('Not found any category!')
+        }
         return res.status(200).json(categories);
     } catch (err) {
         return res.status(500).json(err);
@@ -34,6 +37,9 @@ const getAllCategory = async (req, res) => {
 const getCategory = async (req, res) => {
     try {
         const category = await categoryService.getCategoryById(req.params.categoryId);
+        if(!category) {
+            return res.status(404).json('Not found!')
+        }
         return res.status(200).json(category);
     } catch (err) {
         return res.status(500).json(err);

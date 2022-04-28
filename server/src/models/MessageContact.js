@@ -9,15 +9,12 @@ const messageContactSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        minLength: 20,
-        maxLength: 100,
         trim: true
     },
     content: {
         type: String,
         required: true,
-        trim: true,
-        minLength: 50
+        trim: true
     }
 }, {timestamps: true})
 

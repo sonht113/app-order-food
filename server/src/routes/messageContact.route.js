@@ -14,12 +14,12 @@ router
     messageController.createMessage)
 
 /** GET all message */
-router.get('all-mess', authMiddleware.verifyTokenAndAdmin, messageController.getAllMessage)
+router.get('/all-mess', authMiddleware.verifyTokenAndAdmin, messageController.getAllMessage)
 
 /** GET message */
-router.get('mess-detail', authMiddleware.verifyTokenAndAdmin, messageController.getMessage)
+router.get('/mess-detail', authMiddleware.verifyTokenAndAdmin, messageController.getMessage)
 
 /** DELETE message */
-router.delete('delete-mess', authMiddleware.verifyTokenAndAdmin, messageController.deleteMessage)
+router.delete('/delete-mess', authMiddleware.verifyTokenAndAdmin, messageController.deleteMessage)
 
 module.exports = router

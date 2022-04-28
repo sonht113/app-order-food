@@ -15,6 +15,7 @@ const usersRouter = require('./routes/users.route');
 const authRouter = require('./routes/auth.route');
 const productRouter = require('./routes/product.route');
 const categoryRouter = require('./routes/category.route');
+const messageRouter = require('./routes/messageContact.route')
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ app.use('/v1/users', usersRouter);
 app.use('/v1/auth', authRouter);
 app.use('/v1/products', productRouter);
 app.use('/v1/category', categoryRouter);
+app.use('/v1/message', methodOverride)
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

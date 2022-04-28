@@ -38,8 +38,7 @@ const queryProducts = async (page) => {
  * @return {Promise<product>}
  */
 const getProductById = async (productId) => {
-    const product = Product.findById(productId)
-    return product
+     return Product.findById(productId)
 }
 
 /**
@@ -48,8 +47,7 @@ const getProductById = async (productId) => {
  * @return {Promise<product>}
  */
 const getProductByName = async (productName) => {
-    const product = Product.findOne({name: productName})
-    return product
+    return Product.findOne({name: productName})
 }
 
 /**

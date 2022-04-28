@@ -40,7 +40,9 @@ const getAllProduct = async (req, res) => {
             return res.status(500).json('Not valid!');
         }
         const products = await productService.queryProducts(req.params.page);
-        console.log(products);
+        if(products.length === 0) {
+            return res.status(404).json('Not found any products!')
+        }
         return res.status(200).json(products);
     } catch (err) {
         return res.status(500).json(err);
@@ -86,7 +88,7 @@ const updateProduct = async (req, res) => {
         await productService.updateProductById(req.params.productId, newProduct);
         return res.status(200).json(newProduct);
     } else {
-        const productByName = await productService.getProductByName({ name: req.body.name });
+        const productByName = await productService.getProductByName(req.body.name);
         if (productByName) {
             return res.status(500).json('Name product is exist!');
         }

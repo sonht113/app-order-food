@@ -33,6 +33,17 @@ const loginUser = async (req, res) => {
     }
 }
 
+/* LOGOUT */
+const logoutUser = async (req, res) => {
+    try {
+        res.clearCookie('accessToken')
+        return res.status(200).json('Log out successfully!')
+    } catch (e) {
+        return res.status(500).json(e)
+    }
+}
+
 module.exports = {
-    loginUser
+    loginUser,
+    logoutUser
 }

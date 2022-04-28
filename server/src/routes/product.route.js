@@ -2,6 +2,7 @@ const express = require('express')
 const {body} = require('express-validator')
 const upload = require('../config/upload/multer')
 const {productController} = require('../controllers')
+const {authMiddleware} = require('../middlewares')
 
 const router = express.Router()
 
@@ -14,21 +15,29 @@ router
         // body('price').not().isEmpty(),
         // body('count').not().isEmpty(),
         upload.single('product_pic'),
+        authMiddleware.verifyTokenAndAdmin,
         productController.createProduct)
 
 /*
  * GET all product
  * Paginate
  */
-router.get('/list-product/:page', productController.getAllProduct)
+router.get('/list-product/:page', authMiddleware.verifyToken, productController.getAllProduct)
 
 /* GET product by id */
-router.get('/info-product/:productId', productController.getProduct)
+router.get('/info-product/:productId', authMiddleware.verifyToken, productController.getProduct)
 
 /* UPDATE product by id */
-router.put('/upd-product/:productId',  upload.single('product_pic'), productController.updateProduct)
+router.put(
+  '/upd-product/:productId',
+  upload.single('product_pic'),
+  authMiddleware.verifyTokenAndAdmin,
+  productController.updateProduct)
 
 /* DELETE product by id */
-router.delete('/delete-product/:productId', productController.deleteProduct)
+router.delete(
+  '/delete-product/:productId',
+  authMiddleware.verifyTokenAndAdmin,
+  productController.deleteProduct)
 
 module.exports = router;

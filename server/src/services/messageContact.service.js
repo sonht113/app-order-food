@@ -5,15 +5,15 @@ const messageContact = require('../models/MessageContact');
  * @param {Object} messageBody
  * @return {Promise<message>}
  */
-const createMessage = async ({ title, content }) => {
-    return Category.create({ title: title, content: content });
+const createMessage = async ({ author, title, content }) => {
+    return messageContact.create({ author: author, title: title, content: content });
 };
 
 /**
  * Get all message
  * @return {Promise<message>}
  */
-const queryMessage = async () => {
+const queryMessages = async () => {
     return messageContact.find();
 };
 
@@ -35,8 +35,19 @@ const getMessageByTitle = async (messageTitle) => {
     return messageContact.findOne({ title: messageTitle });
 };
 
+/**
+ * Delete message by id
+ * @param {ObjectId} messageId
+ * @return {Promise<Message>}
+ */
+const deleteMessageById = async (messageId) => {
+    return messageContact.findByIdAndDelete(messageId)
+}
+
 module.exports = {
     createMessage,
+    queryMessages,
     getMessageById,
     getMessageByTitle,
+    deleteMessageById
 };

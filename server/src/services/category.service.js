@@ -5,8 +5,8 @@ const Category = require('../models/Category')
  * @param {Object} categoryBody
  * @return {Promise<Category>}
  */
-const createCategory = async ({name}) => {
-    return Category.create({name: name})
+const createCategory = async ({name, description}) => {
+    return Category.create({name: name, description: description})
 }
 
 /**

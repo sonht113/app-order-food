@@ -40,7 +40,7 @@ app.use('/v1/users', usersRouter);
 app.use('/v1/auth', authRouter);
 app.use('/v1/products', productRouter);
 app.use('/v1/category', categoryRouter);
-app.use('/v1/message', methodOverride)
+app.use('/v1/message', messageRouter)
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

@@ -11,6 +11,7 @@ const createCategory = async (req, res) => {
         }
         const category = {
             name: req.body.name,
+            icon: req.body.icon,
             description: req.body.description
         };
         const createdCategory = await categoryService.createCategory(category);
@@ -60,6 +61,7 @@ const updateCategory = async (req, res) => {
 
     const newCategory = {
         name: req.body.name,
+        icon: req.body.icon,
         description: req.body.description
     };
 

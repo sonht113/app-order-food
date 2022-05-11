@@ -9,6 +9,7 @@ const router = express.Router();
 router.post(
   '/create-category',
   body('name').not().isEmpty({ ignore_whitespace: true }),
+  body('icon').not().isEmpty({ignore_whitespace: false}),
   body('description').not().isEmpty({ignore_whitespace: true}),
   authMiddleware.verifyTokenAndAdmin,
   categoryController.createCategory);
@@ -20,6 +21,7 @@ router.get('/all-categories', authMiddleware.verifyToken, categoryController.get
 router.put(
   '/update-category/:categoryId',
   body('name').not().isEmpty({ignore_whitespace: true}),
+  body('icon').not().isEmpty({ignore_whitespace: false}),
   body('description').not().isEmpty({ignore_whitespace: true}),
   authMiddleware.verifyTokenAndAdmin,
   categoryController.updateCategory);

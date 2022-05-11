@@ -1,60 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
-import Navbar from 'components/Layouts/Navbar';
+import { useState } from 'react'
+import logo from './logo.svg'
+import './App.css'
 
 function App() {
+  const [count, setCount] = useState(0)
+
   return (
     <div className="App">
-      <Navbar />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
+        <p>Hello Vite + React!</p>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          <button type="button" onClick={() => setCount((count) => count + 1)}>
+            count is: {count}
+          </button>
         </p>
-        <span>
-          <span>Learn </span>
+        <p>
+          Edit <code>App.tsx</code> and save to test HMR updates.
+        </p>
+        <p>
           <a
             className="App-link"
-            href="https://reactjs.org/"
+            href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"
           >
-            React
+            Learn React
           </a>
-          <span>, </span>
+          {' | '}
           <a
             className="App-link"
-            href="https://redux.js.org/"
+            href="https://vitejs.dev/guide/features.html"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Redux
+            Vite Docs
           </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
+        </p>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -7,7 +7,7 @@ const categoryApi = {
     return axiosClient.post(url, data)
   },
   getAll(): Promise<Category[]> {
-    const url = '/category/all-category'
+    const url = '/category/all-categories'
     return axiosClient.get(url)
   },
   update(id: string, data: Category): Promise<Category> {

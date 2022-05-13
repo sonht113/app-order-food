@@ -10,10 +10,10 @@ const router = express.Router()
 router
     .post(
         '/create-product',
-        // body('name').not().isEmpty({ignore_whitespace: true}),
-        // body('category').not().isEmpty({ignore_whitespace: true}),
-        // body('price').not().isEmpty(),
-        // body('count').not().isEmpty(),
+        body('name').not().isEmpty({ignore_whitespace: true}),
+        body('category').not().isEmpty({ignore_whitespace: true}),
+        body('price').not().isEmpty(),
+        body('count').not().isEmpty(),
         upload.single('product_pic'),
         authMiddleware.verifyTokenAndAdmin,
         productController.createProduct)
@@ -22,7 +22,7 @@ router
  * GET all product
  * Paginate
  */
-router.get('/list-product/:page', authMiddleware.verifyToken, productController.getAllProduct)
+router.get('/list-product/:page', productController.getAllProduct)
 
 /* GET product by id */
 router.get('/info-product/:productId', authMiddleware.verifyToken, productController.getProduct)

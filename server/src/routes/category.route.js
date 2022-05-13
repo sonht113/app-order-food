@@ -15,7 +15,7 @@ router.post(
   categoryController.createCategory);
 
 /** GET all category */
-router.get('/all-categories', authMiddleware.verifyToken, categoryController.getAllCategory);
+router.get('/all-categories', categoryController.getAllCategory);
 
 /** UPDATE category */
 router.put(

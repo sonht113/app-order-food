@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react';
 import logo from './logo.svg'
 import './App.css'
+import productApi from './api/productApi';
 
 function App() {
   const [count, setCount] = useState(0)
+  useEffect(() => {
+    productApi.getAll().then((res) => console.log(res[0]))
+  }, []);
+
 
   return (
     <div className="App">

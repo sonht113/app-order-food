@@ -5,14 +5,16 @@ const Product = require('../models/Product')
  * @param {Object} productBody
  * @return {Promise<product>}
  */
-const createProduct = async ({name, description, category, image, price, count}) => {
+const createProduct = async ({name, description, category, image, price, count, isHot, isNew}) => {
     return Product.create({
         name: name,
         description: description,
         category: category,
         image: image,
         price: price,
-        count: count
+        count: count,
+        isHot: isHot,
+        isNew: isNew
     })
 }
 

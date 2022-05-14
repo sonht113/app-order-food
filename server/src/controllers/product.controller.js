@@ -26,7 +26,7 @@ const createProduct = async (req, res) => {
         await productService.createProduct(product);
         return res.status(200).json(product);
     } catch (err) {
-        return res.status(500).json('Can not post product');
+        return res.status(500).json('Can not add product!');
     }
 };
 
@@ -36,10 +36,10 @@ const createProduct = async (req, res) => {
  */
 const getAllProduct = async (req, res) => {
     try {
-        if (req.params.page < 1) {
+        if (req.query.page < 1) {
             return res.status(500).json('Not valid!');
         }
-        const products = await productService.queryProducts(req.params.page);
+        const products = await productService.queryProducts(req.query.page, req.query.limit);
         if(products.length === 0) {
             return res.status(404).json('Not found any products!')
         }

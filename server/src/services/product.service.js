@@ -19,17 +19,23 @@ const createProduct = async ({name, description, category, image, price, count})
 /**
  * Get All Product
  * @param {Number} page
- * @return {Promise<void>}
+ * @return {Promise<{pagination: {limit, page: Number}, products: Query<Array<HydratedDocument<any, {}, {}>>, any, {}, any>}>}
  */
-const queryProducts = async (page) => {
-    const perPage = process.env.PER_PAGE // product on one page
+const queryProducts = async (page, limit) => {
+    //const perPage = process.env.PER_PAGE // product on one page
     const pageNumber = page || 1
 
     const products = await Product.find()
-        .limit(perPage)
-        .skip((perPage * pageNumber) - perPage)
+        .limit(limit)
+        .skip((limit * pageNumber) - limit)
 
-    return products
+    return {
+        products: products,
+        pagination: {
+            page: page,
+            limit: limit
+        }
+    }
 }
 
 /**

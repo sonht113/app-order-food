@@ -18,6 +18,8 @@ const createProduct = async (req, res) => {
             image: `/image/${req.file.filename}`,
             price: req.body.price,
             count: req.body.count,
+            isHot: req.body.isHot,
+            isNew: req.body.isNew
         };
         const productByName = await productService.getProductByName(req.body.name);
         if (productByName) {
@@ -82,6 +84,8 @@ const updateProduct = async (req, res) => {
         price: req.body.price,
         count: req.body.count,
         image: `/image/${req.file.filename}`,
+        isHot: req.body.isHot,
+        isNew: req.body.isNew
     };
 
     if (product.name === req.body.name) {

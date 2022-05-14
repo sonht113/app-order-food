@@ -31,6 +31,16 @@ const productSchema = new mongoose.Schema(
             type: Number,
             required: true,
             trim: true
+        },
+        isHot: {
+            type: Boolean,
+            required: true,
+            trim: true
+        },
+        isNew: {
+            type: Boolean,
+            required: true,
+            trim: true
         }
     },
     {

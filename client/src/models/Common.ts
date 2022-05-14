@@ -1,5 +1,6 @@
 export interface PaginationParam {
-  page: number
+  page: number;
+  limit: number;
 }
 
 export interface ListResponse<T> {

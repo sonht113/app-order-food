@@ -6,9 +6,14 @@ const productApi = {
     const url = '/products/create-product'
     return axiosClient.post(url, data)
   },
-  getAll(): Promise<Product[]> {
-    const url = '/products/list-product/1'
-    return axiosClient.get(url)
+  getAll(): Promise<ListResponse<Product>> {
+    const url = '/products/list-product'
+    return axiosClient.get(url, {
+      params: {
+        page: 1,
+        limit: 2
+      }
+    })
   },
   getId(id: string): Promise<Product> {
     const url = `/products/info-product/${id}`

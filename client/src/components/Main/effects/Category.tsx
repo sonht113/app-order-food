@@ -29,13 +29,13 @@ const CategoryFC: React.FC = () => {
         categories.map((category: Category , index: number) => (
           <div
             key={index}
-            className="Category-Item group flex flex-col items-center rounded-2xl shadow-lg cursor-pointer hover:bg-yellow-400 duration-500"
+            className="Category-Item group flex flex-col items-center px-1 pt-2 rounded-2xl shadow-lg cursor-pointer hover:bg-yellow-400 duration-500"
           >
             <div className="Category-Icon p-6 rounded-2xl bg-white border">
               { category.icon({className: "text-4xl fill-gray-400 group-hover:fill-black"}) }
             </div>
             <div className="Category-Title my-5">
-              <span className="text-gray-400 font-medium group-hover:text-black">{category.title}</span>
+              <span className="text-gray-400 text-center font-medium group-hover:text-black">{category.title}</span>
             </div>
           </div>
         ))

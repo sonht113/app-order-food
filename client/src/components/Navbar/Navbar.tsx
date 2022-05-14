@@ -15,7 +15,7 @@ import React from 'react';
 
 const Navbar:React.FC = () => {
   return (
-    <div className="navbar flex shadow-xl sticky top-0 left-0 flex-col py-3 rounded-xl mr-10 h-[100%]">
+    <div className="navbar flex sticky top-0 left-0 flex-col py-3 rounded-xl mr-10 h-[100%]">
       <div className="navbar-item navbar-logo">
         <Link to="/" className="logo-link flex items-center justify-center">
           <div></div>

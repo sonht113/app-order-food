@@ -20,15 +20,17 @@ function App() {
     <div className="pl-5 flex">
       <Router >
         <Navbar />
-          <AnimatePresence exitBeforeEnter>
-            <Routes>
-              <Route path="/" element={<HomePage/>}/>
-              <Route path="/contact-us" element={<ContactPage/>}/>
-              <Route path="/login" element={<LoginPage/>}/>
-              <Route path="/sign-up" element={<RegisterPage/>}/>
-              <Route path="/setting" element={<SettingPage/>}/>
-            </Routes>
-          </AnimatePresence>
+          <div className="Main w-full">
+            <AnimatePresence exitBeforeEnter>
+              <Routes>
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="/contact-us" element={<ContactPage/>}/>
+                <Route path="/login" element={<LoginPage/>}/>
+                <Route path="/sign-up" element={<RegisterPage/>}/>
+                <Route path="/setting" element={<SettingPage/>}/>
+              </Routes>
+            </AnimatePresence>
+          </div>
       </Router>
     </div>
   )

@@ -11,7 +11,7 @@ const productApi = {
     return axiosClient.get(url, {
       params: {
         page: 1,
-        limit: 2
+        limit: 10
       }
     })
   },

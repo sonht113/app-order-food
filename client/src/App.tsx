@@ -12,10 +12,6 @@ import { useEffect } from 'react';
 import productApi from './api/productApi';
 
 function App() {
-  useEffect(() => {
-    productApi.getAll().then((res) => console.log(res))
-  }, []);
-
   return (
     <div className="pl-5 flex">
       <Router >

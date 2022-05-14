@@ -6,4 +6,6 @@ export interface Product {
   image: string;
   price: number;
   count: number;
+  isHot: boolean;
+  isNew: boolean;
 }

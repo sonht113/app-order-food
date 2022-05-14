@@ -4,6 +4,6 @@ export interface PaginationParam {
 }
 
 export interface ListResponse<T> {
-  data: T[];
+  products: T[];
   pagination: PaginationParam;
 }

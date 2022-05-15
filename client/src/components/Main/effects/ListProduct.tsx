@@ -18,7 +18,6 @@ const ListProduct:React.FC = () => {
   }, [])
 
   const listProduct: Product[] = useAppSelector(selectRemainingProductResult)
-  console.log(listProduct);
 
   return (
     <div className="Products">

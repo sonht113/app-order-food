@@ -2,21 +2,21 @@ import axiosClient from './axiosClient';
 import { Category } from '../models';
 
 const categoryApi = {
-  add(data: Category): Promise<Category> {
+  add: async (data: Category): Promise<Category> => {
     const url = '/category/create-category'
-    return axiosClient.post(url, data)
+    return await axiosClient.post(url, data)
   },
-  getAll(): Promise<Category[]> {
+  getAll: async (): Promise<Category[]> => {
     const url = '/category/all-categories'
-    return axiosClient.get(url)
+    return await axiosClient.get(url)
   },
-  update(id: string, data: Category): Promise<Category> {
+  update: async (id: string, data: Category): Promise<Category> => {
     const url = `/category/update-category/${id}`
-    return axiosClient.put(url, data)
+    return await axiosClient.put(url, data)
   },
-  delete(id: string): Promise<any> {
+  delete: async (id: string): Promise<any> => {
     const url = `/category/del-category/${id}`
-    return axiosClient.delete(url)
+    return await axiosClient.delete(url)
   }
 }
 

@@ -2,13 +2,13 @@ import { Auth } from '../models';
 import axiosClient from './axiosClient';
 
 const authApi = {
-  login(data: Auth): Promise<any> {
+  login: async (data: Auth): Promise<any> => {
     const url = '/auth/login'
-    return axiosClient.post(url, data)
+    return await axiosClient.post(url, data)
   },
-  logout(): Promise<any> {
+  logout: async (): Promise<any> => {
     const url = '/auth/logout'
-    return axiosClient.post(url)
+    return await axiosClient.post(url)
   }
 }
 

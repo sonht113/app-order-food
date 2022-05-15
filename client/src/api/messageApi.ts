@@ -2,21 +2,21 @@ import { Message } from '../models';
 import axiosClient from './axiosClient';
 
 const messageApi = {
-  add(data: Message): Promise<Message> {
+  add: async (data: Message): Promise<Message> => {
     const url = '/message/create-mess'
-    return axiosClient.post(url, data)
+    return await axiosClient.post(url, data)
   },
-  getAll(): Promise<Message[]> {
+  getAll: async (): Promise<Message[]> => {
     const url = '/message/all-mess'
-    return axiosClient.get(url)
+    return await axiosClient.get(url)
   },
-  getId(id: string): Promise<Message> {
+  getId: async (id: string): Promise<Message> => {
     const url = `/message/mess-detail/${id}`
-    return axiosClient.get(url)
+    return await axiosClient.get(url)
   },
-  delete(id: string): Promise<any> {
+  delete: async (id: string): Promise<any> => {
     const url = `/message/delete-mess/${id}`
-    return axiosClient.delete(url)
+    return await axiosClient.delete(url)
   }
 }
 

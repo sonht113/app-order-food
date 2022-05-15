@@ -20,6 +20,6 @@ const selectorResultProduct = (state) => {
 export const selectRemainingProductResult = createSelector(
   selectorResultProduct,
   (result) => {
-    return result.productResult
+    return result.productResult.products
   }
 )
